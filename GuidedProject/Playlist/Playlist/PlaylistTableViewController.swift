@@ -63,7 +63,10 @@ class PlaylistTableViewController: UITableViewController {
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "toSongList", let songListTVC = segue.destinationViewController as? SongListTableViewController, let playlistCell = sender as? UITableViewCell, let indexPath = tableView.indexPathForCell(playlistCell) {
+        if segue.identifier == "toSongList", //If its the right segue, continue
+            let songListTVC = segue.destinationViewController as? SongListTableViewController, //This is where the segue is taking us.
+            let playlistCell = sender as? UITableViewCell, // This and the line below are used to grab the cell
+            let indexPath = tableView.indexPathForCell(playlistCell) { // to find out what playlist was in that cell.
             songListTVC.playlist = PlaylistController.sharedInstance.playlists[indexPath.row]
         }
     }
